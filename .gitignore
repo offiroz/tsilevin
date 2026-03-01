@@ -1,0 +1,14 @@
+# Excel files (catalog - not needed in repo)
+*.xlsx
+*.xls
+
+# Old versions folder
+קודמים/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
