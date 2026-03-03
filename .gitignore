@@ -4,6 +4,10 @@
 
 # Old versions folder
 קודמים/
+גרסה נוספת/
+
+# Claude Code settings
+.claude/
 
 # OS files
 .DS_Store
