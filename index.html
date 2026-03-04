@@ -70,17 +70,19 @@
         }
 
         .logo {
-            font-family: 'Heebo', serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-            color: var(--sea-deep);
             text-decoration: none;
-            letter-spacing: 6px;
-            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            transition: opacity 0.3s ease;
         }
 
         .logo:hover {
-            color: var(--sea-foam);
+            opacity: 0.75;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
         }
 
         .nav-links {
@@ -184,7 +186,21 @@
         }
 
         .hero-logo-container {
-            margin-bottom: 30px;
+            margin-bottom: 8px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo-img {
+            height: 100px;
+            width: auto;
+            filter: drop-shadow(2px 4px 20px rgba(255, 255, 255, 0.6));
+        }
+
+        .footer-logo-img {
+            height: 55px;
+            width: auto;
+            margin-bottom: 15px;
+            display: block;
         }
 
         .hero h1 {
@@ -192,9 +208,9 @@
             font-size: 5.5rem;
             font-weight: 300;
             letter-spacing: 12px;
-            color: var(--sand-light);
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8);
+            color: var(--sea-deep);
+            margin-bottom: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.9), 0 0 90px rgba(255, 255, 255, 0.7), 0 0 140px rgba(255, 255, 255, 0.4);
             animation: fadeInUp 1s ease-out;
         }
 
@@ -203,9 +219,10 @@
             font-size: 1.6rem;
             font-weight: 300;
             font-style: italic;
-            color: var(--sand-light);
+            color: var(--sea-deep);
             letter-spacing: 3px;
             margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.5);
             animation: fadeInUp 1s ease-out 0.2s both;
         }
 
@@ -1086,9 +1103,12 @@
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3.5rem;
-                letter-spacing: 6px;
+            .hero-logo-img {
+                height: 90px;
+            }
+
+            .logo-img {
+                height: 38px;
             }
 
             .hero-tagline {
@@ -1173,7 +1193,7 @@
     <header id="header">
         <div class="container">
             <nav>
-                <a href="#" class="logo">ציליוין</a>
+                <a href="#" class="logo"><img src="assets/Logo.webp" alt="ציליוין" class="logo-img"></a>
                 <ul class="nav-links">
                     <li><a href="#home">בית</a></li>
                     <li><a href="#gallery">קולקציה</a></li>
@@ -1195,8 +1215,11 @@
         <div class="hero-background"></div>
         <div class="sand-overlay"></div>
         <div class="hero-content">
-            <h1>צילוין</h1>
-            <p class="hero-tagline">תכשיטים מהלב, השראה מהטבע</p>
+            <h1>ציליוין</h1>
+            <div class="hero-logo-container">
+                <img src="assets/Logo.webp" alt="ציליוין" class="hero-logo-img">
+            </div>
+            <p class="hero-tagline">תכשיטים שמגיעים ישר מהלב</p>
             <a href="#gallery" class="hero-cta">גלו את הקולקציה</a>
         </div>
         <div class="wave-decoration">
@@ -1238,7 +1261,7 @@
         <div class="container">
             <div class="about-wrapper">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="סטודיו צילוין" class="about-image-main">
+                    <img src="assets/view2.webp" alt="סטודיו צילוין" class="about-image-main">
                     <div class="about-image-accent"></div>
                 </div>
                 <div class="about-content">
@@ -1289,30 +1312,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="container">
-            <div class="testimonials-header">
-                <h2>מה הלקוחות אומרים</h2>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">טבעת האירוסין שעיצבה לי צילוין היא בדיוק מה שחלמתי עליו. השירות היה מדהים והתוצאה עלתה על כל הציפיות.</p>
-                    <div class="testimonial-author">— שרה כ.</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">קניתי שרשרת מתנה לאמא שלי והיא פשוט התאהבה. האיכות והעיצוב מושלמים. תודה רבה!</p>
-                    <div class="testimonial-author">— דניאל מ.</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">העגילים שרכשתי הם הדבר הכי יפה שיש לי. כל פעם שאני עונדת אותם מחמאות לי. ממליצה בחום!</p>
-                    <div class="testimonial-author">— מיכל א.</div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
@@ -1393,7 +1393,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>צילוין</h3>
+                    <img src="assets/Logo.webp" alt="צילוין" class="footer-logo-img">
                     <p>תכשיטים מהלב, השראה מהטבע. כל יצירה נולדת מתוך אהבה, מסורת ועיצוב ישראלי מקורי.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="Instagram">
