@@ -10,17 +10,17 @@
     
     <style>
         :root {
-            /* פלטת צבעים - שדות ירוקים ושמיים כחולים */
-            --sand-light: #edf7ea;
-            --sand: #cfe8c8;
-            --sand-dark: #a8d09e;
-            --sea-foam: #a8c8e0;
-            --sea-light: #d0e8f5;
-            --sea-deep: #4a8ab0;
-            --cream: #f6fbf4;
-            --text-dark: #2e3d2c;
-            --text-medium: #4a5e48;
-            --text-light: #6a7e68;
+            /* פלטת צבעים - שקיעה בשדה ירוק חקלאי */
+            --sand-light: #eaf0d8;
+            --sand: #c2d898;
+            --sand-dark: #7aaa3a;
+            --sea-foam: #a0c060;
+            --sea-light: #cce4a8;
+            --sea-deep: #3a6a18;
+            --cream: #f6f0e4;
+            --text-dark: #2e3d1a;
+            --text-medium: #4a5e28;
+            --text-light: #6a7e48;
         }
 
         * {
@@ -238,14 +238,14 @@
             letter-spacing: 2px;
             border-radius: 50px;
             transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(74, 138, 176, 0.35);
+            box-shadow: 0 10px 30px rgba(58, 106, 24, 0.35);
             animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .hero-cta:hover {
-            background: #3a7a9e;
+            background: #2a5010;
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(74, 138, 176, 0.45);
+            box-shadow: 0 15px 40px rgba(58, 106, 24, 0.45);
         }
 
         /* גלים מונפשים */
@@ -264,7 +264,7 @@
             left: 0;
             width: 200%;
             height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,80 C150,20 350,100 600,60 C850,20 1050,90 1200,70 L1200,120 L0,120 Z' fill='%23edf7ea'/%3E%3C/svg%3E") repeat-x;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,80 C150,20 350,100 600,60 C850,20 1050,90 1200,70 L1200,120 L0,120 Z' fill='%23eaf0d8'/%3E%3C/svg%3E") repeat-x;
             background-size: 50% 100%;
             animation: wave 18s linear infinite;
         }
@@ -332,7 +332,7 @@
             background: var(--sea-deep);
             border-color: var(--sea-deep);
             color: white;
-            box-shadow: 0 5px 20px rgba(74, 138, 176, 0.3);
+            box-shadow: 0 5px 20px rgba(58, 106, 24, 0.3);
         }
 
         /* ========== GALLERY - גלריית תכשיטים ========== */
@@ -416,7 +416,7 @@
         }
 
         .jewelry-badge.new {
-            background: #5a9650;
+            background: #4a8820;
         }
 
         .jewelry-badge.sale {
@@ -429,7 +429,7 @@
 
         .jewelry-category {
             font-size: 0.8rem;
-            color: #5a9650;
+            color: #4a8820;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 8px;
@@ -596,7 +596,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%235a9650' fill-opacity='0.05'%3E%3Cellipse cx='40' cy='20' rx='8' ry='14'/%3E%3Cellipse cx='20' cy='55' rx='6' ry='10'/%3E%3Cellipse cx='60' cy='55' rx='6' ry='10'/%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234a8820' fill-opacity='0.05'%3E%3Cellipse cx='40' cy='20' rx='8' ry='14'/%3E%3Cellipse cx='20' cy='55' rx='6' ry='10'/%3E%3Cellipse cx='60' cy='55' rx='6' ry='10'/%3E%3C/g%3E%3C/svg%3E");
             pointer-events: none;
         }
 
@@ -634,13 +634,13 @@
             letter-spacing: 2px;
             border-radius: 50px;
             transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(74, 138, 176, 0.35);
+            box-shadow: 0 10px 30px rgba(58, 106, 24, 0.35);
         }
 
         .custom-cta:hover {
-            background: #3a7a9e;
+            background: #2a5010;
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(74, 138, 176, 0.45);
+            box-shadow: 0 15px 40px rgba(58, 106, 24, 0.45);
         }
 
         /* ========== TESTIMONIALS - המלצות ========== */
@@ -714,7 +714,7 @@
         /* ========== CONTACT - יצירת קשר ========== */
         .contact-section {
             padding: 100px 0;
-            background: linear-gradient(135deg, var(--sand-light) 0%, #d0e8f5 100%);
+            background: linear-gradient(135deg, var(--sand-light) 0%, var(--sea-light) 100%);
         }
 
         .contact-wrapper {
@@ -812,7 +812,7 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--sea-deep);
-            box-shadow: 0 0 0 4px rgba(74, 138, 176, 0.1);
+            box-shadow: 0 0 0 4px rgba(58, 106, 24, 0.1);
         }
 
         .form-group textarea {
@@ -836,9 +836,9 @@
         }
 
         .submit-btn:hover {
-            background: #3a7a9e;
+            background: #2a5010;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(74, 138, 176, 0.3);
+            box-shadow: 0 10px 30px rgba(58, 106, 24, 0.3);
         }
 
         /* ========== FOOTER ========== */
@@ -1005,7 +1005,7 @@
 
         .modal-category {
             font-size: 0.85rem;
-            color: #5a9650;
+            color: #4a8820;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -1076,7 +1076,7 @@
         }
 
         .modal-inquiry:hover {
-            background: #3a7a9e;
+            background: #2a5010;
             transform: translateY(-2px);
         }
 
