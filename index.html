@@ -1080,6 +1080,30 @@
             transform: translateY(-2px);
         }
 
+        .modal-thumbnails {
+            display: flex;
+            gap: 8px;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .modal-thumbnails img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.7;
+            transition: all 0.2s ease;
+        }
+
+        .modal-thumbnails img:hover,
+        .modal-thumbnails img.active {
+            border-color: var(--sea-deep);
+            opacity: 1;
+        }
+
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .about-wrapper,
@@ -1480,6 +1504,7 @@
             <button class="modal-close" aria-label="סגור">&times;</button>
             <div class="modal-image">
                 <img id="modalImage" src="" alt="">
+                <div class="modal-thumbnails" id="modalThumbnails"></div>
             </div>
             <div class="modal-details">
                 <div class="modal-category" id="modalCategory"></div>
@@ -1513,6 +1538,11 @@
                 price: "₪1,850",
                 description: "עגילי טיפה עדינים בזהב 14K, השראה מטיפות הטל על עלי הבוקר. עיצוב מינימליסטי ואלגנטי.",
                 image: "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659611/jewelry-pipeline/IMG_0934/image_4_detail.png",
+                images: [
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659611/jewelry-pipeline/IMG_0934/image_4_detail.png",
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773658250/jewelry-pipeline/IMG_0934_copy/image_4_detail.png",
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659551/jewelry-pipeline/IMG_0934/image_1_white_bg.png"
+                ],
                 badge: "",
                 specs: ["זהב 14K", "משקל: 2.5 גרם", "אורך: 3 ס\"מ", "סוגר לחיצה בטוח"]
             },
@@ -1709,13 +1739,14 @@
         const modalClose = modal.querySelector('.modal-close');
 
         function openModal(item) {
-            document.getElementById('modalImage').src = item.image;
-            document.getElementById('modalImage').alt = item.name;
+            const mainImg = document.getElementById('modalImage');
+            mainImg.src = item.image;
+            mainImg.alt = item.name;
             document.getElementById('modalCategory').textContent = item.categoryHe;
             document.getElementById('modalTitle').textContent = item.name;
             document.getElementById('modalPrice').textContent = item.price;
             document.getElementById('modalDescription').textContent = item.description;
-            
+
             const specsList = document.getElementById('modalSpecs');
             specsList.innerHTML = '';
             item.specs.forEach(spec => {
@@ -1723,7 +1754,24 @@
                 li.textContent = spec;
                 specsList.appendChild(li);
             });
-            
+
+            const thumbsContainer = document.getElementById('modalThumbnails');
+            thumbsContainer.innerHTML = '';
+            if (item.images && item.images.length > 1) {
+                item.images.forEach((url, i) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = url;
+                    thumb.alt = item.name;
+                    if (i === 0) thumb.classList.add('active');
+                    thumb.addEventListener('click', () => {
+                        mainImg.src = url;
+                        thumbsContainer.querySelectorAll('img').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                    });
+                    thumbsContainer.appendChild(thumb);
+                });
+            }
+
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
