@@ -986,14 +986,13 @@
         }
 
         .modal-image {
-            height: 100%;
+            display: flex;
+            flex-direction: column;
             min-height: 500px;
         }
 
-        .modal-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .modal-image .gallery-container {
+            flex: 1;
         }
 
         .modal-details {
@@ -1080,6 +1079,112 @@
             transform: translateY(-2px);
         }
 
+        /* ========== GALLERY ========== */
+        .gallery-container {
+            position: relative;
+            height: 100%;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .gallery-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.92);
+            border: none;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            font-size: 1.6rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+            color: var(--sea-deep);
+        }
+
+        .gallery-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-prev {
+            right: 12px;
+        }
+
+        .gallery-next {
+            left: 12px;
+        }
+
+        .gallery-nav.hidden {
+            display: none;
+        }
+
+        .gallery-counter {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.55);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            pointer-events: none;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 8px;
+            padding: 10px 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: var(--sand-light);
+        }
+
+        .gallery-thumbnails.hidden {
+            display: none;
+        }
+
+        .gallery-thumb {
+            width: 58px;
+            height: 58px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .gallery-thumb:hover {
+            border-color: var(--sand-dark);
+        }
+
+        .gallery-thumb.active {
+            border-color: var(--sea-deep);
+            box-shadow: 0 0 0 1px var(--sea-deep);
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .about-wrapper,
@@ -1097,7 +1202,11 @@
             }
 
             .modal-image {
-                height: 300px;
+                min-height: auto;
+            }
+
+            .gallery-container {
+                height: 280px;
                 min-height: auto;
             }
         }
@@ -1479,7 +1588,13 @@
         <div class="modal-content">
             <button class="modal-close" aria-label="סגור">&times;</button>
             <div class="modal-image">
-                <img id="modalImage" src="" alt="">
+                <div class="gallery-container">
+                    <img id="modalImage" src="" alt="">
+                    <button class="gallery-nav gallery-prev" id="galleryPrev" aria-label="תמונה קודמת">&#8250;</button>
+                    <button class="gallery-nav gallery-next" id="galleryNext" aria-label="תמונה הבאה">&#8249;</button>
+                    <div class="gallery-counter" id="galleryCounter"></div>
+                </div>
+                <div class="gallery-thumbnails" id="galleryThumbnails"></div>
             </div>
             <div class="modal-details">
                 <div class="modal-category" id="modalCategory"></div>
@@ -1512,7 +1627,11 @@
                 categoryHe: "עגילים",
                 price: "₪1,850",
                 description: "עגילי טיפה עדינים בזהב 14K, השראה מטיפות הטל על עלי הבוקר. עיצוב מינימליסטי ואלגנטי.",
-                image: "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659611/jewelry-pipeline/IMG_0934/image_4_detail.png",
+                images: [
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659611/jewelry-pipeline/IMG_0934/image_1_white_bg.png",
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659611/jewelry-pipeline/IMG_0934/image_2_atmosphere.png",
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659611/jewelry-pipeline/IMG_0934/image_4_detail.png"
+                ],
                 badge: "",
                 specs: ["זהב 14K", "משקל: 2.5 גרם", "אורך: 3 ס\"מ", "סוגר לחיצה בטוח"]
             },
@@ -1523,7 +1642,10 @@
                 categoryHe: "שרשראות",
                 price: "₪2,200",
                 description: "שרשרת עם תליון בצורת גל, מושלמת לאוהבות הים. עיצוב ייחודי בהשראת חופי הים התיכון.",
-                image: "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659481/jewelry-pipeline/IMG_0944/image_2_atmosphere.png",
+                images: [
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659481/jewelry-pipeline/IMG_0944/image_1_white_bg.png",
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659481/jewelry-pipeline/IMG_0944/image_2_atmosphere.png"
+                ],
                 badge: "חדש",
                 specs: ["זהב 14K", "אורך שרשרת: 45 ס\"מ", "תליון: 2x1.5 ס\"מ", "סוגר לובסטר"]
             },
@@ -1534,7 +1656,10 @@
                 categoryHe: "טבעות",
                 price: "₪1,400",
                 description: "טבעת עדינה עם טקסטורת חול מוזהבת. כל טבעת נוצרת בעבודת יד עם גימור ייחודי.",
-                image: "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659380/jewelry-pipeline/IMG_0957/image_1_white_bg.png",
+                images: [
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659380/jewelry-pipeline/IMG_0957/image_1_white_bg.png",
+                    "https://res.cloudinary.com/dy4zfgrmu/image/upload/v1773659380/jewelry-pipeline/IMG_0957/image_2_atmosphere.png"
+                ],
                 badge: "",
                 specs: ["זהב 14K", "רוחב: 4 מ\"מ", "מידות: 5-9", "ניתן להזמנה מיוחדת"]
             },
@@ -1545,7 +1670,7 @@
                 categoryHe: "צמידים",
                 price: "₪980",
                 description: "צמיד עדין עם תליוני צדפים קטנים, מזכיר טיולים על חוף הים בשקיעה.",
-                image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80"],
                 badge: "",
                 specs: ["כסף 925 מצופה זהב", "אורך: 17+3 ס\"מ", "5 תליונים", "סוגר מתכוונן"]
             },
@@ -1556,7 +1681,7 @@
                 categoryHe: "חתונה ואירוסין",
                 price: "₪8,500",
                 description: "טבעת אירוסין קלאסית עם יהלום מרכזי נוצץ. עיצוב נצחי שלא יוצא מהאופנה.",
-                image: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80"],
                 badge: "פופולרי",
                 specs: ["זהב לבן 18K", "יהלום 0.5 קרט", "צבע: F-G", "בהירות: VS1"]
             },
@@ -1567,7 +1692,7 @@
                 categoryHe: "עגילים",
                 price: "₪1,200",
                 description: "עגילי חישוק בגימור מט עם נגיעות של כחול ים. קלים ונוחים לכל היום.",
-                image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80"],
                 badge: "חדש",
                 specs: ["זהב 14K", "קוטר: 2.5 ס\"מ", "עובי: 2 מ\"מ", "משקל קל במיוחד"]
             },
@@ -1578,7 +1703,7 @@
                 categoryHe: "שרשראות",
                 price: "₪1,650",
                 description: "שרשרת עדינה עם פנינה טבעית יחידה. אלגנטיות פשוטה ונצחית.",
-                image: "https://images.unsplash.com/photo-1506755855567-92ff770e8d00?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1506755855567-92ff770e8d00?w=600&q=80"],
                 badge: "",
                 specs: ["זהב 14K", "פנינה מים מתוקים 8 מ\"מ", "אורך: 42 ס\"מ", "סוגר לובסטר"]
             },
@@ -1589,7 +1714,7 @@
                 categoryHe: "טבעות",
                 price: "₪1,100",
                 description: "טבעת עם עיטור כוכב ים קטן, מושלמת למי שאוהבת את הים.",
-                image: "https://images.unsplash.com/photo-1603561596112-0a132b757442?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1603561596112-0a132b757442?w=600&q=80"],
                 badge: "",
                 specs: ["כסף 925", "גודל כוכב: 8 מ\"מ", "מידות: 5-8", "גימור מבריק"]
             },
@@ -1600,7 +1725,7 @@
                 categoryHe: "צמידים",
                 price: "₪1,450",
                 description: "צמיד שרשרת עדין בזהב, מושלם לשכבות או לבד.",
-                image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&q=80"],
                 badge: "",
                 specs: ["זהב 14K", "אורך: 18 ס\"מ", "רוחב: 2 מ\"מ", "סוגר לובסטר"]
             },
@@ -1611,7 +1736,7 @@
                 categoryHe: "חתונה ואירוסין",
                 price: "₪4,800",
                 description: "זוג טבעות נישואין קלאסיות בזהב צהוב. סמל לאהבה נצחית.",
-                image: "https://images.unsplash.com/photo-1546168006-2f00d40f0e31?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1546168006-2f00d40f0e31?w=600&q=80"],
                 badge: "",
                 specs: ["זהב 18K", "רוחב: 4 מ\"מ", "גימור מבריק", "חריטה אישית כלולה"]
             },
@@ -1622,7 +1747,7 @@
                 categoryHe: "עגילים",
                 price: "₪1,350",
                 description: "עגילים בעיצוב פרחוני עדין, מוסיפים נגיעה רומנטית לכל לוק.",
-                image: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80"],
                 badge: "",
                 specs: ["זהב ורוד 14K", "קוטר: 1 ס\"מ", "משקל: 1.8 גרם", "סוגר פוש-בק"]
             },
@@ -1633,7 +1758,7 @@
                 categoryHe: "שרשראות",
                 price: "₪2,800",
                 description: "סט שרשראות לשכבות באורכים שונים. ניתן לענוד יחד או בנפרד.",
-                image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80",
+                images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80"],
                 badge: "מבצע",
                 specs: ["זהב 14K", "3 שרשראות: 40, 45, 50 ס\"מ", "תליונים שונים", "נמכר כסט"]
             }
@@ -1658,7 +1783,7 @@
                 
                 card.innerHTML = `
                     <div class="jewelry-image">
-                        <img src="${item.image}" alt="${item.name}" loading="lazy">
+                        <img src="${item.images[0]}" alt="${item.name}" loading="lazy">
                         ${item.badge ? `<span class="jewelry-badge ${badgeClass}">${item.badge}</span>` : ''}
                     </div>
                     <div class="jewelry-content">
@@ -1708,14 +1833,43 @@
         const modal = document.getElementById('jewelryModal');
         const modalClose = modal.querySelector('.modal-close');
 
+        let currentGalleryImages = [];
+        let currentImageIndex = 0;
+
+        function showGalleryImage(index) {
+            const img = document.getElementById('modalImage');
+            const counter = document.getElementById('galleryCounter');
+            const prevBtn = document.getElementById('galleryPrev');
+            const nextBtn = document.getElementById('galleryNext');
+            const thumbs = document.querySelectorAll('.gallery-thumb');
+
+            currentImageIndex = index;
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = currentGalleryImages[index];
+                img.style.opacity = '1';
+            }, 150);
+
+            counter.textContent = `${index + 1} / ${currentGalleryImages.length}`;
+
+            prevBtn.classList.toggle('hidden', index === 0);
+            nextBtn.classList.toggle('hidden', index === currentGalleryImages.length - 1);
+
+            thumbs.forEach((t, i) => t.classList.toggle('active', i === index));
+        }
+
         function openModal(item) {
-            document.getElementById('modalImage').src = item.image;
-            document.getElementById('modalImage').alt = item.name;
+            currentGalleryImages = item.images && item.images.length > 0 ? item.images : [item.image];
+
+            const mainImg = document.getElementById('modalImage');
+            mainImg.src = currentGalleryImages[0];
+            mainImg.alt = item.name;
+
             document.getElementById('modalCategory').textContent = item.categoryHe;
             document.getElementById('modalTitle').textContent = item.name;
             document.getElementById('modalPrice').textContent = item.price;
             document.getElementById('modalDescription').textContent = item.description;
-            
+
             const specsList = document.getElementById('modalSpecs');
             specsList.innerHTML = '';
             item.specs.forEach(spec => {
@@ -1723,7 +1877,24 @@
                 li.textContent = spec;
                 specsList.appendChild(li);
             });
-            
+
+            // Build thumbnails
+            const thumbsContainer = document.getElementById('galleryThumbnails');
+            thumbsContainer.innerHTML = '';
+            if (currentGalleryImages.length > 1) {
+                thumbsContainer.classList.remove('hidden');
+                currentGalleryImages.forEach((src, i) => {
+                    const thumb = document.createElement('div');
+                    thumb.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+                    thumb.innerHTML = `<img src="${src}" alt="${item.name} תמונה ${i + 1}" loading="lazy">`;
+                    thumb.addEventListener('click', () => showGalleryImage(i));
+                    thumbsContainer.appendChild(thumb);
+                });
+            } else {
+                thumbsContainer.classList.add('hidden');
+            }
+
+            showGalleryImage(0);
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -1733,6 +1904,14 @@
             document.body.style.overflow = '';
         }
 
+        document.getElementById('galleryPrev').addEventListener('click', () => {
+            if (currentImageIndex > 0) showGalleryImage(currentImageIndex - 1);
+        });
+
+        document.getElementById('galleryNext').addEventListener('click', () => {
+            if (currentImageIndex < currentGalleryImages.length - 1) showGalleryImage(currentImageIndex + 1);
+        });
+
         modalClose.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
@@ -1740,6 +1919,12 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight' && modal.classList.contains('active')) {
+                if (currentImageIndex > 0) showGalleryImage(currentImageIndex - 1);
+            }
+            if (e.key === 'ArrowLeft' && modal.classList.contains('active')) {
+                if (currentImageIndex < currentGalleryImages.length - 1) showGalleryImage(currentImageIndex + 1);
+            }
         });
 
         function scrollToContact() {
